@@ -10,11 +10,16 @@ public class JobTest {
 
     Job jobOne;
     Job jobTwo;
+    Job jobThree;
+    Job jobFour;
 
     @Before
     public void createJobObjects() {
         jobOne = new Job();
         jobTwo = new Job();
+        jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        jobFour = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+
     }
 
     @Test
@@ -24,12 +29,11 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
-        Job jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals(jobThree.getName(), "Product tester");
-        assertEquals(jobThree.getEmployer(), "ACME");
-        assertEquals(jobThree.getLocation(), "Desert");
-        assertEquals(jobThree.getPositionType(), "Quality control");
-        assertEquals(jobThree.getCoreCompetency(), "Persistence");
+        assertTrue(jobThree instanceof Job);
+        assertTrue(jobThree.getEmployer() instanceof Employer);
+        assertTrue(jobThree.getLocation() instanceof Location);
+        assertTrue(jobThree.getPositionType() instanceof PositionType);
+        assertTrue(jobThree.getCoreCompetency() instanceof CoreCompetency);
     }
 
     @Test
@@ -37,3 +41,29 @@ public class JobTest {
         assertFalse(jobOne.equals(jobTwo));
     }
 
+    @Test
+    public void testToStringWithBlankLines() {
+        assertTrue(jobThree.toString().startsWith("\n"));
+        assertTrue(jobThree.toString().endsWith("\n"));
+    }
+
+    @Test
+    public void testToStringWithLabels() {
+        assertTrue(jobThree.toString().contains("ID: "));
+        assertTrue(jobThree.toString().contains("Name: "));
+        assertTrue(jobThree.toString().contains("Employer: "));
+        assertTrue(jobThree.toString().contains("Location: "));
+        assertTrue(jobThree.toString().contains("Position Type: "));
+        assertTrue(jobThree.toString().contains("Core Competency: "));
+    }
+
+    @Test
+    public void testToStringWithNoData() {
+//        assertTrue(jobFour.toString().contains("Name: Data not available"));
+        assertTrue(jobFour.toString().contains("Employer: Data not available"));
+        assertTrue(jobFour.toString().contains("Location: Data not available"));
+        assertTrue(jobFour.toString().contains("Position Type: Data not available"));
+        assertTrue(jobFour.toString().contains("Core Competency: Data not available"));
+    }
+
+}
