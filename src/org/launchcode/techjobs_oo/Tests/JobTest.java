@@ -59,7 +59,7 @@ public class JobTest {
 
     @Test
     public void testToStringWithNoData() {
-//        assertTrue(jobFour.toString().contains("Name: Data not available"));
+        assertTrue(jobFour.toString().contains("Name: Data not available"));
         assertTrue(jobFour.toString().contains("Employer: Data not available"));
         assertTrue(jobFour.toString().contains("Location: Data not available"));
         assertTrue(jobFour.toString().contains("Position Type: Data not available"));
