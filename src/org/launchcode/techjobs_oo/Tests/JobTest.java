@@ -19,7 +19,6 @@ public class JobTest {
         jobTwo = new Job();
         jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobFour = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-
     }
 
     @Test
@@ -29,13 +28,10 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
+        Job jobThree = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertTrue(jobThree instanceof Job);
-        assertTrue(jobThree.getEmployer() instanceof Employer);
-        assertTrue(jobThree.getLocation() instanceof Location);
-        assertTrue(jobThree.getPositionType() instanceof PositionType);
-        assertTrue(jobThree.getCoreCompetency() instanceof CoreCompetency);
     }
-
+//
     @Test
     public void testJobsForEquality() {
         assertFalse(jobOne.equals(jobTwo));
@@ -46,7 +42,7 @@ public class JobTest {
         assertTrue(jobThree.toString().startsWith("\n"));
         assertTrue(jobThree.toString().endsWith("\n"));
     }
-
+//
     @Test
     public void testToStringWithLabels() {
         assertTrue(jobThree.toString().contains("ID: "));
@@ -59,11 +55,6 @@ public class JobTest {
 
     @Test
     public void testToStringWithNoData() {
-        assertTrue(jobFour.toString().contains("Name: Data not available"));
-        assertTrue(jobFour.toString().contains("Employer: Data not available"));
-        assertTrue(jobFour.toString().contains("Location: Data not available"));
-        assertTrue(jobFour.toString().contains("Position Type: Data not available"));
-        assertTrue(jobFour.toString().contains("Core Competency: Data not available"));
+        assertTrue(jobFour.toString().contains("Data not available"));
     }
-
 }
